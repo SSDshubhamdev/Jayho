@@ -1,0 +1,53 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- checkout: self  # Ensure the repository is checked out
+
+- task: UseNode@1
+  inputs:
+    version: '14.x'
+  displayName: 'Install Node.js'
+
+- script: |
+    echo "Hello, GitHub!"
+    echo "Hello, GitHub!" > index.html
+  displayName: 'Create HTML file'
+
+- script: |
+    cat index.html
+  displayName: 'Display HTML file content'
+
+- script: |
+    npm install eslint
+    npx eslint . --ext .js
+  displayName: 'Run ESLint'
+
+- script: |
+    npm install jest
+    npx jest
+  displayName: 'Run Unit Tests'
+
+- script: |
+    npm install
+    npm run build
+  displayName: 'Build Project'
+
+- script: |
+    npm audit
+  displayName: 'Run Security Scan'
+
+- task: AzureStaticWebApp@0
+  inputs:
+    app_location: "/"
+    output_location: "build"
+    azure_static_web_apps_api_token: $(deployment_token)
+  displayName: 'Deploy to Azure Static Web Apps'
