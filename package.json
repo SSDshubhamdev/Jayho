@@ -1,15 +1,26 @@
 {
   "name": "ssd",
   "version": "1.0.0",
+  "description": "a node package",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SSDshubhamdev/Jayho.git"
+  },
+  "keywords": [
+    "123"
+  ],
+  "author": "Shubham Dev",
   "license": "ISC",
-  "description": "",
+  "bugs": {
+    "url": "https://github.com/SSDshubhamdev/Jayho/issues"
+  },
+  "homepage": "https://github.com/SSDshubhamdev/Jayho#readme",
   "dependencies": {
-    "express": "^4.19.2"
+    "colors": "^1.4.0",
+    "simple-node-logger": "^21.8.12"
   }
 }
